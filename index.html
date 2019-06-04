@@ -1,0 +1,59 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+</head>
+<body style="background-image: url(bg.jpg);background-size: 100% 100%">
+	<h1>Убей всех муравьев</h1>
+	<h1 class="score">0</h1>
+	<h1 class="score1">10</h1>
+<script type="text/javascript">
+	let score = 0
+	let score1 = 10
+	let func2 = function(arg) { //функция с аргументом
+		let rand = Math.random()*arg
+		let round = Math.round(rand)
+		return round;
+	}
+	let interv= function(){
+		let newDiv = document.createElement('img');
+		let func = function(arg) {
+		score = score + arg
+		document.querySelector(".score").innerHTML = score
+		}
+		let func1 = function(arg) {
+		score1 = score1 + arg
+		document.querySelector(".score1").innerHTML = score1
+		}
+		let proverka = function() {//создание функции
+			if ( score == 10 ) {//условие
+				alert("молодец, ты убил муравьев")
+				clearInterval(end);
+			} 
+			else{
+				alert("проиграл")
+			}
+		}
+		setTimeout(proverka,9000)
+
+		document.body.appendChild(newDiv)
+		newDiv.src = "img.svg"
+
+		newDiv.onclick = function(){
+			newDiv.style.display = "none"
+			func(1)
+			func1(-1)
+		} ;
+		
+
+	newDiv.style.height = "100px"
+	newDiv.style.width = "400px"
+	newDiv.style.marginLeft = func2(500) + "px"
+	newDiv.style.marginTop = func2(500) + "px"
+	newDiv.style.position = "absolute"
+	}
+
+	let end =setInterval(interv,1000)
+</script>
+</body>
+</html>
